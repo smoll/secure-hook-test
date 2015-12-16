@@ -1,7 +1,6 @@
 #### todos
 
-0. Remove raw `puts`, use a logger, and distinguish between DEBUG/INFO/WARN.
-0. DRY up Sinatra app if we create more than one endpoint
+* DRY up Sinatra app if we create more than one endpoint
 
 #### use automated build
 ```

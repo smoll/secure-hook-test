@@ -17,3 +17,7 @@ ping:
 	@docker-machine ip default > $(TMPFILE)
 # TODO: replace with a POST that looks like the one from GitHub
 	@http POST http://`cat $(TMPFILE)`/jenkins name=John email=john@example.org
+
+notfound:
+	@docker-machine ip default > $(TMPFILE)
+	@http POST http://`cat $(TMPFILE)`/doesitexist name=John email=john@example.org
