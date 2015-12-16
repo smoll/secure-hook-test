@@ -18,7 +18,9 @@ class MyApp < Sinatra::Base
     payload_body = request.body.read
     logger.debug "* The payload body: #{payload_body}"
     logger.debug "* The params obj: #{params}"
+
     verify_signature(payload_body)
+
     parsed = JSON.parse(payload_body)
     logger.debug "* The parsed JSON: #{parsed.inspect}"
   end
@@ -26,7 +28,7 @@ class MyApp < Sinatra::Base
   def verify_signature(payload_body)
     unless request.env['HTTP_X_HUB_SIGNATURE']
       logger.warn "Got request without HTTP_X_HUB_SIGNATURE"
-      return halt 500, "Invalid request!"
+      return halt 500, "No signature found!"
     end
 
     signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV['SECRET_TOKEN'], payload_body)
@@ -35,6 +37,8 @@ class MyApp < Sinatra::Base
       logger.warn "Got request with incorrect signature"
       return halt 500, "Signatures didn't match!"
     end
+
+    logger.info "Got request with correct signature"
   end
 
   # For any endpoints not matched

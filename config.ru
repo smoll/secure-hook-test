@@ -11,6 +11,6 @@ use Rack::ReverseProxy do
 end
 
 app = proc do |env|
-  [ 200, {'Content-Type' => 'text/plain'}, "hello" ]
+  [ 200, {'Content-Type' => 'text/plain'}, "ok" ]
 end
 run app
