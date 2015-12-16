@@ -1,3 +1,8 @@
+#### todos
+
+0. Remove raw `puts`, use a logger, and distinguish between DEBUG/INFO/WARN.
+0. DRY up Sinatra app if we create more than one endpoint
+
 #### use automated build
 ```
 docker run -e PASSENGER_APP_ENV=staging -e SECRET_TOKEN=mysecret -p 80:80 smoll/secure-hook-test:latest
@@ -66,7 +71,7 @@ Avg Conn Time                 217.65ms
 
 Set up the webhook in the GitHub UI
 
-* Payload URL: `http://abc123.ngrok.com/payload`
+* Payload URL: `http://abc123.ngrok.com/jenkins`
 * Content type: `application/json`
 * Secret: `mysecret`
 
