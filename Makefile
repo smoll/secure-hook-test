@@ -12,6 +12,8 @@ clean:
 run:
 	docker run --rm -e PASSENGER_APP_ENV=dev -p 80:80 hooktest
 
+# Uses httpie
 ping:
 	@docker-machine ip default > $(TMPFILE)
-	@curl http://`cat $(TMPFILE)`
+# TODO: replace with a POST that looks like the one from GitHub
+	@http POST http://`cat $(TMPFILE)`/payload name=John email=john@example.org
