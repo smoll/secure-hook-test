@@ -28,6 +28,9 @@ WORKDIR $APP_HOME
 # Fix permissions
 RUN chown -R app:app .
 
+# Preserve some env vars passed into container
+COPY allowed-env.conf /etc/nginx/main.d/
+
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

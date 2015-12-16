@@ -10,7 +10,7 @@ clean:
 	docker rmi hooktest
 
 run:
-	docker run --rm -e PASSENGER_APP_ENV=dev -p 80:80 hooktest
+	docker run -e PASSENGER_APP_ENV=dev -e SECRET_TOKEN=mysecret -p 80:80 hooktest
 
 # Uses httpie
 ping:
